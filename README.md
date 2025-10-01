@@ -18,7 +18,7 @@ sr_arif = sum / 2
 print('SUM = ', round(sum,2))
 print('AVG = ', round(sr_arif, 2))
 ```
-![Картинка 2](C:\Users\denis\Desktop\python_labs\laba1\images\imex2.png)
+![Картинка 2](.\laba1\images\imex2.png)
 
 ### Задание 3
 ```python
