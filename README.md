@@ -18,7 +18,7 @@ sr_arif = sum / 2
 print('SUM = ', round(sum,2))
 print('AVG = ', round(sr_arif, 2))
 ```
-![Картинка 2](.\laba1\images\imex2.png)
+![Картинка 2](./laba1/images/imex2.png)
 
 ### Задание 3
 ```python
@@ -32,14 +32,14 @@ print(f'База после скидки: {costwsale:.2f} p')
 print(f'НДС: {nds1:.2f} p')
 print(f'Итого к оплате: {totalsum:.2f} p')
 ```
-![Картинка 3](.\laba1\images\imex3.png)
+![Картинка 3](./laba1/images/imex3.png)
 
 ### Задание 4
 ```python
 m = int(input('Минуты: '))
 print(f"{m // 60}:{m% 60}")
 ```
-![Картинка 4](.\laba1\ex4)
+![Картинка 4](./laba1/ex4)
 
 ### Задание 5
 ```python
@@ -49,4 +49,4 @@ f = a[0][:1] + a[1][:1] + a[2][:1]
 print(f)
 print(len(fio))
 ```
-![Картинка 5](.\laba1\images\imex5.png)
+![Картинка 5](./laba1/images/imex5.png)
