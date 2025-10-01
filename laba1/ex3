@@ -1,0 +1,9 @@
+cost = float(input('Введите цену: '))
+sale = float(input('Введите размер скидки: '))
+nds = float(input('Введите НДС: '))
+costwsale = (1 - sale / 100) * cost
+nds1 = (nds / 100) * costwsale 
+totalsum = costwsale + nds1
+print(f'База после скидки: {costwsale:.2f} p')
+print(f'НДС: {nds1:.2f} p')
+print(f'Итого к оплате: {totalsum:.2f} p')

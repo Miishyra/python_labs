@@ -1,0 +1,5 @@
+fio = input('ФИО: ')
+a = fio.split()
+f = a[0][:1] + a[1][:1] + a[2][:1]
+print(f)
+print(len(fio))

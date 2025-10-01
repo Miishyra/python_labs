@@ -1,0 +1,6 @@
+a = float(input('Число a:').replace(',','.'))
+b = float(input('Число b:').replace(',','.'))
+sum = a + b
+sr_arif = sum / 2
+print('SUM = ', round(sum,2))
+print('AVG = ', round(sr_arif, 2))
