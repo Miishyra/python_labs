@@ -39,7 +39,7 @@ print(f'Итого к оплате: {totalsum:.2f} p')
 m = int(input('Минуты: '))
 print(f"{m // 60}:{m% 60}")
 ```
-![Картинка 4](./laba1/ex4)
+![Картинка 4](./laba1/images/imex4.png)
 
 ### Задание 5
 ```python
