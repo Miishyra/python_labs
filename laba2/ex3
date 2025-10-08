@@ -1,0 +1,25 @@
+def format_record(student: tuple[str, str, float]):
+    if len(student) != 3:
+        return "ValueError"
+    fio, group, gpa = student
+    name = fio.split()
+
+    surname = name[0][0].upper() + name[0][1:]
+    ini = ''
+    if len(name) == 2:
+        ini = name[1][0].upper() + '.'
+    if len(name) == 3:
+        ini = name[1][0].upper() + '.' + name[2][0].upper() + '.'
+    return f'{surname} {ini}, гр. {group}, GPA {gpa:.2f}'
+stu1 = ("Иванов Иван Иванович","BIVT-25",4.6)
+stu2 = ("Петров Пётр", "IKBO-12", 5.0)
+stu3 = ("Петров Пётр Петрович", "IKBO-12", 5.0)
+stu4 = ("  сидорова  анна   сергеевна ", "ABB-01", 3.999)
+print(format_record(stu1))
+print(format_record(stu2))
+print(format_record(stu3))
+print(format_record(stu4))
+
+
+
+     

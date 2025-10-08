@@ -1,0 +1,79 @@
+# def transpose(mat: list[list[float | int]]) -> list[list]:
+#     if not mat:
+#         return []  
+#     rowlen1 = len(mat[0])
+#     for row in mat:
+#         if rowlen1 != len(row):
+#             return 'ValueError'
+#     if mat:
+#         tr = list(map(list, zip(*mat)))
+#         return tr
+# t1 = [[1, 2, 3]]
+# t2 = [[1], [2], [3]]
+# t3 = [[1, 2], [3, 4]]
+# t4 = []
+# t5 = [[1, 2], [3]]
+# print(transpose(t1))
+# print(transpose(t2))
+# print(transpose(t3))
+# print(transpose(t4))
+# print(transpose(t5))
+
+
+# def row_sums(mat: list[list[float | int]]) -> list[float]:
+#     rowlen1 = len(mat[0])
+#     for row in mat:
+#         if rowlen1 != len(row):
+#             return 'ValueError'
+#     s = []
+#     for row in mat:
+#         rs = sum(row)
+#         s.append(rs)
+#     return s
+# t1 = [[1, 2, 3], [4, 5, 6]]
+# t2 = [[-1, 1], [10, -10]]
+# t3 = [[0, 0], [0, 0]]
+# t4 = [[1, 2], [3]]
+# print(row_sums(t1))
+# print(row_sums(t2))
+# print(row_sums(t3))
+# print(row_sums(t4))
+
+def col_sums(mat: list[list[float | int]]) -> list[float]:
+    rowlen1 = len(mat[0])
+    for row in mat:
+        if rowlen1 != len(row):
+            return 'ValueError'
+    rows = len(mat)
+    cols = rowlen1
+    s = []
+    for i in range(cols):
+        sm = 0
+        for j in range(rows):
+            sm += mat[j][i]
+        s.append(sm)
+    return s
+t1 = [[1, 2, 3], [4, 5, 6]]
+t2 = [[-1, 1], [10, -10]]
+t3 = [[0, 0], [0, 0]]
+t4 = [[1, 2], [3]]
+print(col_sums(t1))
+print(col_sums(t2))
+print(col_sums(t3))
+print(col_sums(t4))
+
+
+
+
+            
+            
+
+            
+
+            
+
+
+
+    
+
+    

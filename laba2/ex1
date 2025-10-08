@@ -1,0 +1,56 @@
+# def min_max(nums: list[float | int]) -> tuple[float | int, float | int]:
+#     if not nums:
+#         return 'ValueError'
+#     mn = min(nums)
+#     mx = max(nums)
+#     return (mn, mx)
+
+# t1 = [3, -1, 5, 5, 0]
+# t2 = [42]
+# t3 = [-5, -2, -9]
+# t4 = []
+# t5 = [1.5, 2, 2.0, -3.1]
+# print(min_max(t1))
+# print(min_max(t2))
+# print(min_max(t3))
+# print(min_max(t4))
+# print(min_max(t5))
+
+
+# def unique_sorted(nums: list[float | int]) -> list[float | int]:
+#     return sorted(set(nums))
+# t1 = [3, 1, 2, 1, 3]
+# t2 = []
+# t3 = [-1, -1, 0, 2, 2]
+# t4 = [1.0, 1, 2.5, 2.5, 0]
+# print(unique_sorted(t1))
+# print(unique_sorted(t2))
+# print(unique_sorted(t3))
+# print(unique_sorted(t4))
+
+def flatten(mat: list[list | tuple]) -> list:
+    tup = []
+    for a in mat:
+        for i in a:
+            if str(i) in '0123456789':
+                tup.append(i)
+            else:
+                return 'TypeError'
+    return tup
+t1 = [[1, 2], [3, 4]]
+t2 = [[1, 2], (3, 4, 5)]
+t3 =[[1], [], [2, 3]]
+t4 = [[1, 2], "ab"]
+print(flatten(t1))
+print(flatten(t2))
+print(flatten(t3))
+print(flatten(t4))
+
+
+
+
+
+        
+
+
+
