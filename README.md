@@ -1,83 +1,80 @@
-﻿# Лаборторная работа 3
-## Задание A — src/lib/text.py
-### normalize
-```
-def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
-    text = text.casefold()
-    if yo2e:
-        text = text.replace('ё', 'е').replace('Ё', 'Е')
-    text = text.replace('\t', ' ').replace('\r', ' ').replace('\n', ' ')
-    text = ' '.join(text.split())
-    text = text.strip()
-    return text
-print(normalize("ПрИвЕт\nМИр\t")) 
-print(normalize("ёжик, Ёлка"))
-print(normalize("Hello\r\nWorld"))
-print(normalize("  двойные   пробелы  "))
-```
-![Изображение 1](laba3/images/ex1.png)
-### tokenize 
-```
-import re 
-def tokenize(text: str) -> list[str]:
-    return re.findall(r'\w+(?:-\w+)*', text)
-print(tokenize("привет мир"))
-print(tokenize("hello,world!!!"))
-print(tokenize("по-настоящему круто"))
-print(tokenize("2025 год"))
-print(tokenize("emoji 😀 не слово"))
+﻿# Лаборторная работа 4
+## Задание A — модуль src/lab04/io_txt_csv.py
+```python
+import csv
+from pathlib import Path
+from typing import Iterable, Sequence
 
-```
-![Изображение 2](laba3/images/ex2.png)
+def read_text(path: str | Path, encoding: str = "utf-8") -> str:
+    try:
+        return Path(path).read_text(encoding=encoding)
+    except FileNotFoundError:
+        return "Такого файла нету"
+    except UnicodeDecodeError:
+        return "Неудалось изменить кодировку"
 
+def write_csv(rows: list[tuple | list], path: str | Path, header: tuple[str, ...] | None = None) -> None:
+    p = Path(path)
+    with p.open('w', newline="", encoding="utf-8") as file: # контроль переноса строк,кодироввка файла
+        f = csv.writer(file)
+        if header is None and rows == []: # нет заголовка и данных
+            file_c.writerow(('a', 'b')) 
+        if header is not None:
+            f.writerow(header)
+        if rows != []:
+            const = len(rows[0])
+            for i in rows:
+                if len(i) != const:
+                    return ValueError
+        f.writerows(rows)
 
-### count_freq + top_n
+def ensure_parent_dir(path: str | Path) -> None:
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+
+print(read_text(r"C:\Users\Home\Documents\GitHub\lab_01\data\input.txt"))
+write_csv([("word","count"),("test",3)], r"C:\Users\Home\Documents\GitHub\lab_01\data\check.csv") 
 ```
-from collections import Counter
-def count_freq(tokens: list[str]) -> dict[str, int]:
-    freq = Counter(tokens)
-    return dict(freq)
-def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
-    sorted_items = sorted(freq.items(), key=lambda x: (-x[1], x[0]))
-    return sorted_items[:n]
-freq1 = count_freq(["a","b","a","c","b","a"])
-freq2 = count_freq(["bb","aa","bb","aa","cc"])
-print(top_n(freq1, n = 2))
-print(top_n(freq2, n =2))
-```
-![Изображение 3](laba3/images/ex3.png)
+![Изображение 1](img/lab4/ex1.1)
+![Изображение 2](img/lab4/ex1.2)
 
 
-## Задание B — src/text_stats.py (скрипт со stdin)
+## Задание B — скрипт src/lab04/text_report.py
 ```
-from lib.text import normalize, tokenize, count_freq, top_n
+from io_txt_csv import read_text, write_csv, ensure_parent_dir
 import sys
-def main():
-    text = sys.stdin.buffer.read().decode('utf-8') #вход к бинарным данным,преобразует строку в юникод
-    if not text.strip():
-        print("Нет входных данных")
-        return
-    normalized_text = normalize(text)
-    tokens = tokenize(normalized_text)
+from pathlib import Path
+
+sys.path.append(r'C:\Users\Home\Documents\GitHub\lab_01\lib')
+
+from text import normalize, tokenize, count_freq, top_n
+
+
+def exist_path(path_f: str):
+    return Path(path_f).exists() #существует ли файл 
+
+
+def main(file: str, encoding: str = 'utf-8'): 
+    if not exist_path(file):
+        raise FileNotFoundError 
     
-
-    if not tokens:
-        print("В тексте не найдено слов")
-        return
-
-    total_words = len(tokens) # общее количество слов
-    freq_dict = count_freq(tokens) # словарь частот
-    unique_words = len(freq_dict) # количеситво уникальных слов 
-    top_words = top_n(freq_dict, 5) # самые популярные частоты
+    file_path = Path(file)
+    text = read_text(file, encoding=encoding) # текст в одну строку
+    norm = normalize(text) 
+    tokens = tokenize(norm)
+    freq_dict = count_freq(tokens)
+    top = top_n(freq_dict, 5)
+    top_sort = sorted(top, key=lambda x: (x[1], x[0]), reverse=True) # сортирует список, критерии сортировки, частота слово и само слово, сортировка по убыванию
+    report_path = file_path.parent / 'report.csv' # cоздает путь для файла отчета в той же папке, где исходный файл
+    write_csv(top_sort, report_path, header=('word', 'count'))
     
-    print(f"Всего слов: {total_words}")
-    print(f"Уникальных слов: {unique_words}")
-    print("Топ-5:")
-    for word, count in top_words:
-        print(f"{word}: {count}")
+    print(f'Всего слов: {len(tokens)}')
+    print(f'Уникальных слов: {len(freq_dict)}')
+    print('Топ-5:')
+    for cursor in top_sort:
+        print(f'{cursor[0]}: {cursor[-1]}')
 
 
-if __name__ == "__main__":  
-    main()
+main(r'C:\Users\Home\Documents\GitHub\lab_01\data\input.txt')
 ```
-![Изображение 4](laba3/images/ex4.png)
+![Изображение 3](img/lab4/ex2.1)
+![Изображение 3](img/lab4/ex2.2)
