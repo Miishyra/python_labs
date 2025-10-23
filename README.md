@@ -34,8 +34,8 @@ def ensure_parent_dir(path: str | Path) -> None:
 print(read_text(r"C:\Users\Home\Documents\GitHub\lab_01\data\input.txt"))
 write_csv([("word","count"),("test",3)], r"C:\Users\Home\Documents\GitHub\lab_01\data\check.csv") 
 ```
-![Изображение 1](img/lab4/ex1.1)
-![Изображение 2](img/lab4/ex1.2)
+![Изображение 1](img/lab4/ex1.1.png)
+![Изображение 2](img/lab4/ex1.2.png)
 
 
 ## Задание B — скрипт src/lab04/text_report.py
@@ -76,5 +76,5 @@ def main(file: str, encoding: str = 'utf-8'):
 
 main(r'C:\Users\Home\Documents\GitHub\lab_01\data\input.txt')
 ```
-![Изображение 3](img/lab4/ex2.1)
-![Изображение 3](img/lab4/ex2.2)
+![Изображение 3](img/lab4/ex2.1.png)
+![Изображение 4](img/lab4/ex2.2.png)
