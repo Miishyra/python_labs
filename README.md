@@ -45,7 +45,7 @@ write_csv([("word", "count"), ("test", 3)], r"C:\Users\denis\python_labs\data\ch
 
 
 ## Задание B — скрипт src/lab04/text_report.py
-```
+```python
 from io_txt_csv import read_text, write_csv, ensure_parent_dir
 import sys
 from pathlib import Path
