@@ -3,19 +3,23 @@
 ```python
 import csv
 from pathlib import Path
-from typing import Iterable, Sequence
+from typing import List, Tuple, Optional
 
+
+#читаем содержимое текста из файла
 def read_text(path: str | Path, encoding: str = "utf-8") -> str:
     try:
         return Path(path).read_text(encoding=encoding)
     except FileNotFoundError:
-        return "Такого файла нету"
+        return "Файл не найден."
     except UnicodeDecodeError:
-        return "Неудалось изменить кодировку"
+        return "Ошибка кодирования файла."
 
+
+#запись данных в CSV файл
 def write_csv(rows: list[tuple | list], path: str | Path, header: tuple[str, ...] | None = None) -> None:
     p = Path(path)
-    with p.open('w', newline="", encoding="utf-8") as file: # контроль переноса строк,кодироввка файла
+    with p.open('w', newline="", encoding="utf-8") as file: #w открывает файл(если он есть) и стирает все или создает его(если нет)
         f = csv.writer(file)
         if header is None and rows == []: # нет заголовка и данных
             file_c.writerow(('a', 'b')) 
@@ -31,8 +35,10 @@ def write_csv(rows: list[tuple | list], path: str | Path, header: tuple[str, ...
 def ensure_parent_dir(path: str | Path) -> None:
     Path(path).parent.mkdir(parents=True, exist_ok=True)
 
-print(read_text(r"C:\Users\Home\Documents\GitHub\lab_01\data\input.txt"))
-write_csv([("word","count"),("test",3)], r"C:\Users\Home\Documents\GitHub\lab_01\data\check.csv") 
+
+#использование функций
+print(read_text(r"C:\Users\denis\python_labs\data\input.txt"))  # чтение содержимого файла input.txt
+write_csv([("word", "count"), ("test", 3)], r"C:\Users\denis\python_labs\data\check.csv")  # запись в check.csv
 ```
 ![Изображение 1](img/lab4/ex1.1.png)
 ![Изображение 2](img/lab4/ex1.2.png)
@@ -63,9 +69,9 @@ def main(file: str, encoding: str = 'utf-8'):
     tokens = tokenize(norm)
     freq_dict = count_freq(tokens)
     top = top_n(freq_dict, 5)
-    top_sort = sorted(top, key=lambda x: (x[1], x[0]), reverse=True) # сортирует список, критерии сортировки, частота слово и само слово, сортировка по убыванию
+    top_sort = sorted(top, key=lambda x: (x[1], x[0]), reverse=True) #сортируем список топовых слов сначала по частоте, а потом по алфавиту.
     report_path = file_path.parent / 'report.csv' # cоздает путь для файла отчета в той же папке, где исходный файл
-    write_csv(top_sort, report_path, header=('word', 'count'))
+    write_csv(top_sort, report_path, header=('word', 'count')) #записываем отсортированнный список  в цсв файл с заголовком
     
     print(f'Всего слов: {len(tokens)}')
     print(f'Уникальных слов: {len(freq_dict)}')
