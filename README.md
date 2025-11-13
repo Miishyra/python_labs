@@ -46,10 +46,10 @@ json_to_csv('C:/Users/denis/python_labs/data/samples/people.json', 'C:/Users/den
 csv_to_json('C:/Users/denis/python_labs/data/samples/people.csv', 'C:/Users/denis/python_labs/data/out/people_from_csv.json')
 
 ```
-![Картинка 1](img\lab5\exA1.png)
-![Картинка 1](img\lab5\exA2/png)
-![Картинка 1](img\lab5\exA3.png)
-![Картинка 1](img\lab5\exA4.png) 
+![Картинка 1](img/lab5/exA1.png)
+![Картинка 1](img/lab5/exA2.png)
+![Картинка 1](img/lab5/exA3.png)
+![Картинка 1](img/lab5/exA4.png) 
 
 ### Задание B — CSV → XLSX
 
@@ -92,5 +92,5 @@ def csv_to_xlsx(csv_path: str, xlsx_path: str) -> None:
 csv_to_xlsx('C:/Users/denis/python_labs/data/samples/cities.csv', 'C:/Users/denis/python_labs/data/out/cities.xlsx')
 csv_to_xlsx('C:/Users/denis/python_labs/data/samples/people.csv', 'C:/Users/denis/python_labs/data/out/people.xlsx')    
 ```
-![Картинка 1](img\lab5\exB1.png)
-![Картинка 1](img\lab5\exB2.png)
+![Картинка 1](img/lab5/exB1.png)
+![Картинка 1](img/lab5/exB2.png)
