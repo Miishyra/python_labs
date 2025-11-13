@@ -16,7 +16,7 @@ def read_text(path: str | Path, encoding: str = "utf-8") -> str:
 #запись данных в CSV файл
 def write_csv(rows: list[tuple | list], path: str | Path, header: tuple[str, ...] | None = None) -> None:
     p = Path(path)
-    with p.open('w', newline="", encoding="utf-8") as file: #открывает файл(если он есть) и стирает все или создает его(если нет)
+    with p.open('w', newline="", encoding="utf-8") as file: #w открывает файл(если он есть) и стирает все или создает его(если нет)
         f = csv.writer(file)
         if header is None and rows == []: # нет заголовка и данных
             file_c.writerow(('a', 'b')) 
@@ -35,4 +35,4 @@ def ensure_parent_dir(path: str | Path) -> None:
 
 #использование функций
 print(read_text(r"C:\Users\denis\python_labs\data\input.txt"))  # чтение содержимого файла input.txt
-write_csv([("word", "count"), ("test", 3)], r"C:\Users\denis\python_labs\data\check.csv")  # запись в check.csv
+write_csv([("word", "count"), ("test", 3)], r"C:\Users\denis\python_labs\data\check.json")  # запись в check.csv
