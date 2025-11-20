@@ -156,8 +156,8 @@ if __name__ == "__main__":
 ```
 ### Вывод JSON -> CSV:
 ![Картинка 1](img/lab6/ex4.png)
-![Картинка 1](img/lab6/ex1.png)
-![Картинка 1](img/lab6/ex1.png)
+![Картинка 1](img/lab6/ex7.png)
+![Картинка 1](img/lab6/ex3.png)
 ### Вывод CSV -> JSON:
 ![Картинка 1](img/lab6/ex5.png)
 ### Вывод CSV -> XLSX:
