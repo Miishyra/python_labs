@@ -163,4 +163,4 @@ if __name__ == "__main__":
 ### Вывод CSV -> XLSX:
 ![Картинка 1](img/lab6/ex6.png)
 ### Help:
-![Картинка 1](./images/image08.png)
+![Картинка 1](img/lab6/image08.png)
