@@ -1,7 +1,7 @@
 import sys, argparse
 
-sys.path.append(r'C:\Users\denis\python_labs\src\lib')
-sys.path.append(r'C:\Users\denis\python_labs\src\lab6')
+sys.path.append(r"C:\Users\denis\python_labs\src\lib")
+sys.path.append(r"C:\Users\denis\python_labs\src\lab6")
 from csv_xlsx import (
     csv_to_xlsx,
 )
